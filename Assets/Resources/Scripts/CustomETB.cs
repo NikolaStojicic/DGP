@@ -1,4 +1,4 @@
-/*==============================================================================
+﻿/*==============================================================================
 Copyright (c) 2019 PTC Inc. All Rights Reserved.
 
 Copyright (c) 2010-2014 Qualcomm Connected Experiences, Inc.
@@ -10,41 +10,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
-public class BoxOrderingControler
-{
-    private Dictionary<string, Vector3> _paletPositions;
-    public BoxOrderingControler()
-    {
-        _paletPositions = new Dictionary<string, Vector3>();
-        this.initialization();
-    }
-
-    private void initialization()
-    {
-        _paletPositions.Add("k7", new Vector3(-0.50f, 0, 0.5f));
-        _paletPositions.Add("k1", new Vector3(-0.4985f, 0, 0.50f));
-        _paletPositions.Add("k6", new Vector3(-0.4962f, 0, 0.50f));
-        _paletPositions.Add("k5", new Vector3(-0.50f, 0, 0.4985f));
-        _paletPositions.Add("k2", new Vector3(-0.4988f, 0, 0.4985f));
-        _paletPositions.Add("k3", new Vector3(-0.50f, 0, 0.4973f));
-        _paletPositions.Add("k4", new Vector3(-0.4962f, 0, 0.4992f));
-
-    }
-
-
-    public Vector3 getNextPositon(string name)
-    {
-        return this._paletPositions[name];
-    }
-}
-
-public class Broadcaster : MonoBehaviour
-{
-    public void FoundTrackable()
-    {
-        this.BroadcastMessage("RenderBox");
-    }
-}
 
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
@@ -52,9 +17,9 @@ public class Broadcaster : MonoBehaviour
 /// Changes made to this file could be overwritten when upgrading the Vuforia version.
 /// When implementing custom event handler behavior, consider inheriting from this class instead.
 /// </summary>
-public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
+public class CustomETB : MonoBehaviour, ITrackableEventHandler
 {
-    
+
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -92,16 +57,17 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     {
         m_PreviousStatus = previousStatus;
         m_NewStatus = newStatus;
-        
-        Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + 
+
+        Debug.Log("Trackable " + mTrackableBehaviour.TrackableName +
                   " " + mTrackableBehaviour.CurrentStatus +
                   " -- " + mTrackableBehaviour.CurrentStatusInfo);
 
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
-        {
-            BroadcastMessage("RenderBox");
+        { 
+            RenderBoxAtPosition render = this.GetComponent<RenderBoxAtPosition>();
+            render.RenderBox(mTrackableBehaviour.TrackableName);
             OnTrackingFound();
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
@@ -117,7 +83,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             OnTrackingLost();
         }
     }
-    
+
 
     #endregion // PUBLIC_METHODS
 

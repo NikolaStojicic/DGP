@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class XMLReader : MonoBehaviour
 {
-
     [SerializeField]
     public TextAsset xmlFile;
     private readonly string _path = "C://Users/EDIT/Documents/UnityEditREPOS/DigitalPalletizingTake2/Assets/Resources/edit.xml";
