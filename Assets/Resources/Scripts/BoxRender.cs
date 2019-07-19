@@ -12,8 +12,9 @@ public class BoxRender : MonoBehaviour
     {
         if (!dictBox.ContainsKey(name))
         {
-            GameObject b = Instantiate(boxPrefab, transform);
-            b.transform.position = pos;
+
+            GameObject b = Instantiate(boxPrefab, this.transform.GetChild(0).transform);
+            b.transform.localPosition = pos ;
             b.transform.localScale = size;
             b.transform.rotation = transform.rotation;
             dictBox.Add(name, b);

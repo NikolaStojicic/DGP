@@ -19,18 +19,18 @@ public class XML_Nikola : MonoBehaviour
         {
             string name = node.Attributes["name"]?.InnerText;
             
-            if (name == boxName + ".Left")
+            if (name == boxName + ".Front")
             {
                 string atrSize = node.Attributes["size"]?.InnerText;
                 string[] size = atrSize.Split(' ');
                 vec.x = float.Parse(size[0]);
-                vec.y = float.Parse(size[1]);
+                vec.z = float.Parse(size[1]);
             }
-            if (name == boxName + ".Bottom")
+            if (name == boxName + ".Right")
             {
                 string atrSize = node.Attributes["size"]?.InnerText;
                 string[] size = atrSize.Split(' ');
-                vec.z = float.Parse(size[0]);
+                vec.y = float.Parse(size[0]);
             }
         }
         dict.Add(boxName, vec);
