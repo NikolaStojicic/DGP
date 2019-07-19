@@ -15,6 +15,7 @@ public class BoxRender : MonoBehaviour
             GameObject b = Instantiate(boxPrefab, transform);
             b.transform.position = pos;
             b.transform.localScale = size;
+            b.transform.rotation = transform.rotation;
             dictBox.Add(name, b);
         }
     }
