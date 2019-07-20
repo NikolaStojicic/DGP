@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 
-public class XML_Nikola : MonoBehaviour
+public class XML_Reader : MonoBehaviour
 {
 
     [SerializeField]

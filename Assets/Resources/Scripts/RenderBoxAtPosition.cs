@@ -4,18 +4,16 @@ using UnityEngine;
 public class RenderBoxAtPosition : MonoBehaviour
 {
     private Dictionary<string, Vector3> _paletPositions;
-    private XML_Nikola xml_nikola;
+    private XML_Reader xml_nikola;
     private BoxRender box_render;
+    private int box;
     public void RenderBox(string name)
     {
         box_render = GameObject.FindObjectsOfType<BoxRender>()[0];
-      //  BoxRender[] array = GameObject.FindObjectsOfType<BoxRender>();
-
-
         Vector3 size = xml_nikola.getSizeByName(name);
         size = size * 1;
         Debug.Log("Detektujem: " + name + ", sa Vektrom3: " + size);
-       Vector3 vek = _paletPositions[name];
+        Vector3 vek = _paletPositions[name];
         box_render.RenderBox(name, _paletPositions[name], size);
     }
     private void initialization()
@@ -34,12 +32,22 @@ public class RenderBoxAtPosition : MonoBehaviour
     {
         _paletPositions = new Dictionary<string, Vector3>();
         this.initialization();
-        xml_nikola = GameObject.FindObjectOfType<XML_Nikola>();
+        xml_nikola = GameObject.FindObjectOfType<XML_Reader>();
+        /*for (int i = 1; i < 8; i++)
+        {
+            RenderBox("k" + i);
+        }*/
+        box = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("space"))
+        {
+            RenderBox("k" + box);
+            box++;
+        }
+       
     }
 }

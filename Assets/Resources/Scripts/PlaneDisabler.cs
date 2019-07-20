@@ -4,6 +4,11 @@ using UnityEngine;
 using Vuforia;
 public class PlaneDisabler : MonoBehaviour
 {
+    public void StageOnlyOnce()
+    {
+        this.gameObject.GetComponent<AnchorInputListenerBehaviour>().gameObject.SetActive(false);
+        this.gameObject.GetComponent<PlaneFinderBehaviour>().gameObject.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {
