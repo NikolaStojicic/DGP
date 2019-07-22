@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GroundFAKE
+  - Status
+  - Img_plc
+  - btn_plc
   layers:
   - Default
   - TransparentFX

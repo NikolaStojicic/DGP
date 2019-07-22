@@ -23,14 +23,14 @@ public class XML_Reader : MonoBehaviour
             {
                 string atrSize = node.Attributes["size"]?.InnerText;
                 string[] size = atrSize.Split(' ');
-                vec.x = float.Parse(size[0]);
-                vec.z = float.Parse(size[1]);
+                vec.x = float.Parse(size[0], System.Globalization.CultureInfo.InvariantCulture);
+                vec.z = float.Parse(size[1], System.Globalization.CultureInfo.InvariantCulture);
             }
             if (name == boxName + ".Right")
             {
                 string atrSize = node.Attributes["size"]?.InnerText;
                 string[] size = atrSize.Split(' ');
-                vec.y = float.Parse(size[0]);
+                vec.y = float.Parse(size[0], System.Globalization.CultureInfo.InvariantCulture);
             }
         }
         dict.Add(boxName, vec);

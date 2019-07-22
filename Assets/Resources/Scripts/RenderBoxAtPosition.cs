@@ -7,6 +7,15 @@ public class RenderBoxAtPosition : MonoBehaviour
     private XML_Reader xml_nikola;
     private BoxRender box_render;
     private int box;
+
+    private void UI_Control(string name)
+    {
+        UI_Main ui_main = GameObject.FindObjectOfType<UI_Main>();
+        ui_main.setUiStatusSprite(name);
+        ui_main.setUiStatusText("Detektujem kutiju!");
+        ui_main.setUiStatusButtonText("Scan");
+    }
+
     public void RenderBox(string name)
     {
         box_render = GameObject.FindObjectsOfType<BoxRender>()[0];
@@ -15,6 +24,8 @@ public class RenderBoxAtPosition : MonoBehaviour
         Debug.Log("Detektujem: " + name + ", sa Vektrom3: " + size);
         Vector3 vek = _paletPositions[name];
         box_render.RenderBox(name, _paletPositions[name], size);
+        // Veza sa UI
+        UI_Control(name);
     }
     private void initialization()
     {
@@ -33,21 +44,11 @@ public class RenderBoxAtPosition : MonoBehaviour
         _paletPositions = new Dictionary<string, Vector3>();
         this.initialization();
         xml_nikola = GameObject.FindObjectOfType<XML_Reader>();
-        /*for (int i = 1; i < 8; i++)
-        {
-            RenderBox("k" + i);
-        }*/
-        box = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown("space"))
-        //{
-        //    RenderBox("k" + box);
-        //    box++;
-        //}
-       
+      
     }
 }
