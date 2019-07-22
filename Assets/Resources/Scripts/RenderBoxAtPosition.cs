@@ -43,11 +43,11 @@ public class RenderBoxAtPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            RenderBox("k" + box);
-            box++;
-        }
+        //if (Input.GetKeyDown("space"))
+        //{
+        //    RenderBox("k" + box);
+        //    box++;
+        //}
        
     }
 }

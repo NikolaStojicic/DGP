@@ -40,7 +40,7 @@ public class Collider_Controller : MonoBehaviour
                 numOfVertsContained++;
         }
         Debug.Log(numOfVertsContained);
-        if(numOfVertsContained == 8)
+        if(numOfVertsContained >= 4)
         {
             //OVDE UPADA KOD UKOLIKO JE KUTIJA NA TACNOJ POZICIJI
             GetComponent<MeshRenderer>().material = green;
