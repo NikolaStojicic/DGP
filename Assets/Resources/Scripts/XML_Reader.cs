@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 
+/// <summary>
+/// Class for reading dimensions of the boxes from XML
+/// </summary>
 public class XML_Reader : MonoBehaviour
 {
 
@@ -12,6 +15,11 @@ public class XML_Reader : MonoBehaviour
 
     private Dictionary<string, Vector3> dict = new Dictionary<string, Vector3>();
 
+    /// <summary>
+    /// Functon for extraction dimension from XML file 
+    /// </summary>
+    /// <param name="boxName"> Name of the box for finding dimension</param>
+    /// <returns>Vector3 with dimenzion of boxName</returns>
     private Vector3 getSizeBoxName(string boxName)
     {
         Vector3 vec = new Vector3();
@@ -37,6 +45,11 @@ public class XML_Reader : MonoBehaviour
         return vec;
     }
 
+    /// <summary>
+    /// Function for returning size of the box from boxes colection
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns>Vector3 dimension of forwarded box name</returns>
     public Vector3 getSizeByName(string name)
     {
         return dict[name];

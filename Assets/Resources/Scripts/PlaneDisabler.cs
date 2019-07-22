@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
+
+/// <summary>
+/// A custum handeler for disable Ground Plane once it's founded 
+/// </summary>
 public class PlaneDisabler : MonoBehaviour
 {
     public void StageOnlyOnce()
