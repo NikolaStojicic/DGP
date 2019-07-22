@@ -1032,6 +1032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxLogoList: {fileID: 6203865744223521710, guid: 799c883bd36b3f943b6a569c201ee9e2,
     type: 3}
+  transparency: 0.35
 --- !u!21 &740188821
 Material:
   serializedVersion: 6
