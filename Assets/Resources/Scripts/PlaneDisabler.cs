@@ -13,6 +13,8 @@ public class PlaneDisabler : MonoBehaviour
         //ui_main.setUiStatusButtonText("Scan next");
         //ui_main.setUiStatusBtnInteractable(true);
         ui.setUIALL(UIStatus.Green, "Ground plane placed successfuly!", "", false, "Scan box");
+        MultiTargetDisabler mtd = GameObject.FindObjectOfType<MultiTargetDisabler>();
+        mtd.enableMultiTargets();
     }
     // Start is called before the first frame update
     void Start()

@@ -15,11 +15,12 @@ public class UI_Main : MonoBehaviour
     [SerializeField]
     private GameObject boxLogoList;
     [SerializeField]
+    private float transparency;
 
     private Image imgPlc;
     private Text uiStatus;
     private GameObject uiBtn;
-    private float transparency;
+
 
     public string name;
 
@@ -82,17 +83,21 @@ public class UI_Main : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             Image img = transform.GetChild(i).gameObject.GetComponent<Image>();
-            if (status == UIStatus.Green)
+            if (transform.GetChild(i).gameObject.name != "Back")
             {
-                img.color = green;
-            }
-            else if (status == UIStatus.Red)
-            {
-                img.color = red;
-            }
-            else
-            {
-                img.color = grey;
+
+                if (status == UIStatus.Green)
+                {
+                    img.color = green;
+                }
+                else if (status == UIStatus.Red)
+                {
+                    img.color = red;
+                }
+                else
+                {
+                    img.color = grey;
+                }
             }
 
         }

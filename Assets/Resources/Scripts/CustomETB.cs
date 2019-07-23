@@ -35,6 +35,7 @@ public class CustomETB : MonoBehaviour, ITrackableEventHandler
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
+        this.gameObject.GetComponent<MultiTargetBehaviour>().enabled = false;
     }
 
     protected virtual void OnDestroy()

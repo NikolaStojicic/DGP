@@ -11,6 +11,7 @@ public class MultiTargetDisabler : MonoBehaviour
     void Start()
     {
         listBoxPlaced = new List<GameObject>();
+        disableMultiTargets("");
     }
     
     public void boxUnplaced(string name)
