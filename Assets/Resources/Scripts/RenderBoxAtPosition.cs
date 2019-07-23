@@ -16,7 +16,7 @@ public class RenderBoxAtPosition : MonoBehaviour
     {
         box_render = GameObject.FindObjectsOfType<BoxRender>()[0];
         Vector3 size = _xmlReader.getSizeByName(name);
-        size = size * 1;
+        size = size *1;
         Debug.Log("Detektujem: " + name + ", sa Vektrom3: " + size);
         Vector3 vek = _paletPositions[name];
         box_render.RenderBox(name, _paletPositions[name], size);

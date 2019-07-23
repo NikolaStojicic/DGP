@@ -8,7 +8,10 @@ public class Collider_Controller : MonoBehaviour
     private Material green;
     [SerializeField]
     private Material red;
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
     }
