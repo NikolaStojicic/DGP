@@ -8,9 +8,13 @@ public class Collider_Controller : MonoBehaviour
     private Material green;
     [SerializeField]
     private Material red;
+    private MultiTargetDisabler mtd;
+    private UI_Main ui_main;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
+        mtd = GameObject.FindObjectOfType<MultiTargetDisabler>();
+        ui_main = GameObject.FindObjectOfType<UI_Main>();
     }
 
     private Vector3[] getCornersOfBoxCollider(GameObject b)
@@ -29,6 +33,9 @@ public class Collider_Controller : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
+        // IME BOXA
+        string name = other.gameObject.transform.parent.name;
+
         // Krajnje tacke boxa
         Vector3[] verts = getCornersOfBoxCollider(other.gameObject);
         int numOfVertsContained = 0;
@@ -45,10 +52,14 @@ public class Collider_Controller : MonoBehaviour
             //OVDE UPADA KOD UKOLIKO JE KUTIJA NA TACNOJ POZICIJI
             GetComponent<MeshRenderer>().material = green;
             //GameObject.Destroy(other.gameObject);
+            mtd.boxPlaced(name);
+            ui_main.setUIALL(UIStatus.Green, "Box is on the place!", name, true, "Next");
         }
         else
         {
             GetComponent<MeshRenderer>().material = red;
+            mtd.boxUnplaced(name);
+            ui_main.setUIALL(UIStatus.Red, "Box is NOT on the place!", name, false, "Scan again");
         }
     }
 }

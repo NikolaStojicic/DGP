@@ -8,6 +8,7 @@ TagManager:
   - Status
   - Img_plc
   - btn_plc
+  - plane_fix
   layers:
   - Default
   - TransparentFX

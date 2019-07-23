@@ -8,13 +8,8 @@ public class RenderBoxAtPosition : MonoBehaviour
     private BoxRender box_render;
     private int box;
 
-    private void UI_Control(string name)
-    {
-        UI_Main ui_main = GameObject.FindObjectOfType<UI_Main>();
-        ui_main.setUiStatusSprite(name);
-        ui_main.setUiStatusText("Detektujem kutiju!");
-        ui_main.setUiStatusButtonText("Scan");
-    }
+    
+
 
     public void RenderBox(string name)
     {
@@ -24,8 +19,7 @@ public class RenderBoxAtPosition : MonoBehaviour
         Debug.Log("Detektujem: " + name + ", sa Vektrom3: " + size);
         Vector3 vek = _paletPositions[name];
         box_render.RenderBox(name, _paletPositions[name], size);
-        // Veza sa UI
-        UI_Control(name);
+
     }
     private void initialization()
     {

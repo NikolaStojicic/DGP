@@ -18,6 +18,7 @@ public class UI_Main : MonoBehaviour
     private GameObject boxLogoList;
     [SerializeField]
     private float transparency;
+    public string name;
 
     private Color green = new Color(0, 255, 0);
     private Color red = new Color(255, 0, 0);
@@ -41,6 +42,7 @@ public class UI_Main : MonoBehaviour
         setUiStatusSprite(name);
         setUiStatusBtnInteractable(btn);
         setUiStatusButtonText(btn_text);
+        this.name = name;
     }
 
     public void setUiStatusText(string text)
@@ -59,11 +61,12 @@ public class UI_Main : MonoBehaviour
                 break;
             }
         }
+        this.name = name;
     }
 
     public void setUiStatusBtnInteractable(bool bo)
     {
-        ui_btn.GetComponent<Button>().interactable = true;
+        ui_btn.GetComponent<Button>().interactable = bo;
     }
 
     public void setUiStatusButtonText(string text)

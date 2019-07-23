@@ -15,7 +15,7 @@ public class PrefabBox : MonoBehaviour
         listaCollidera = new List<GameObject>();
         xml_reader = GameObject.FindObjectOfType<XML_Reader>();
         listaMultiTargeta = new List<GameObject>();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             GameObject b = this.transform.GetChild(i).gameObject;
             Vector3 size = xml_reader.getSizeByName(b.name);

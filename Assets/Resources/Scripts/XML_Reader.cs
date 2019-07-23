@@ -41,8 +41,8 @@ public class XML_Reader : MonoBehaviour
     {
         return dict[name];
     }
-    // Start is called before the first frame update
-    void Start()
+    // Awake before start
+    void Awake()
     {
         _document.LoadXml(xml.ToString());
         List<string> tempName = new List<string>();

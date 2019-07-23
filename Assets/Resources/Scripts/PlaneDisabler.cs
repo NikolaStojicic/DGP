@@ -12,7 +12,7 @@ public class PlaneDisabler : MonoBehaviour
         //ui_main.setUiStatusText("Ground plane setted.");
         //ui_main.setUiStatusButtonText("Scan next");
         //ui_main.setUiStatusBtnInteractable(true);
-        ui_main.setUIALL(UIStatus.Green, "Ground plane placed successfuly!", "", true, "Scan next");
+        ui_main.setUIALL(UIStatus.Green, "Ground plane placed successfuly!", "", false, "Scan box");
     }
     // Start is called before the first frame update
     void Start()
