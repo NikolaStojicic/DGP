@@ -29,20 +29,31 @@ public class Collider_Controller : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        // Krajnje tacke boxa
+        // Krajnje tacke Red boxa
         Vector3[] verts = getCornersOfBoxCollider(other.gameObject);
         int numOfVertsContained = 0;
+
         for (int i = 0; i < verts.Length; i++)
         {
-            Debug.Log(verts[i]);
-            Vector3 vec = verts[i]; 
+            //Debug.Log(verts[i]);
+            //Vector3 vec = verts[i]; 
             if (GetComponent<Collider>().bounds.Contains(verts[i]))
                 numOfVertsContained++;
         }
         Debug.Log(numOfVertsContained);
-        if(numOfVertsContained >= 4)
+
+        //if (GetComponent<Collider>().bounds.Contains(verts[0]))
+        //    numOfVertsContained++;
+        //if (GetComponent<Collider>().bounds.Contains(verts[1]))
+        //    numOfVertsContained++;
+        //if (GetComponent<Collider>().bounds.Contains(verts[3]))
+        //    numOfVertsContained++;
+        //if (GetComponent<Collider>().bounds.Contains(verts[7]))
+        //    numOfVertsContained++;
+
+        //Ukoliko je kutija na tacnoj poziciji
+        if (numOfVertsContained >= 7)
         {
-            //OVDE UPADA KOD UKOLIKO JE KUTIJA NA TACNOJ POZICIJI
             GetComponent<MeshRenderer>().material = green;
             //GameObject.Destroy(other.gameObject);
         }

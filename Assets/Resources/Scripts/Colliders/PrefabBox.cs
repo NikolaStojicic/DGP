@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PrefabBox : MonoBehaviour
 {
-    private List<GameObject> listaMultiTargeta;
+    //private List<GameObject> listaMultiTargeta;
     [SerializeField]
     private GameObject colliderPrefab;
     private XML_Reader xml_reader;
@@ -14,13 +14,14 @@ public class PrefabBox : MonoBehaviour
     {
         listaCollidera = new List<GameObject>();
         xml_reader = GameObject.FindObjectOfType<XML_Reader>();
-        listaMultiTargeta = new List<GameObject>();
+        //listaMultiTargeta = new List<GameObject>();
         for (int i = 0; i < 7; i++)
         {
             GameObject b = this.transform.GetChild(i).gameObject;
             Vector3 size = xml_reader.getSizeByName(b.name);
             GameObject col = Instantiate(colliderPrefab, b.transform);
-            col.transform.localScale = size * .8f;
+            
+            col.transform.localScale = size * 0.8f;
             listaCollidera.Add(col);
         }
     }
