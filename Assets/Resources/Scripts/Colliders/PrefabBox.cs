@@ -7,18 +7,18 @@ public class PrefabBox : MonoBehaviour
     private List<GameObject> listaMultiTargeta;
     [SerializeField]
     private GameObject colliderPrefab;
-    private XML_Reader xml_reader;
+    private XML_Reader xmlReader;
     private List<GameObject> listaCollidera;
     // Start is called before the first frame update
     void Start()
     {
         listaCollidera = new List<GameObject>();
-        xml_reader = GameObject.FindObjectOfType<XML_Reader>();
+        xmlReader = GameObject.FindObjectOfType<XML_Reader>();
         listaMultiTargeta = new List<GameObject>();
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject b = this.transform.GetChild(i).gameObject;
-            Vector3 size = xml_reader.getSizeByName(b.name);
+            Vector3 size = xmlReader.getSizeByName(b.name);
             GameObject col = Instantiate(colliderPrefab, b.transform);
             col.transform.localScale = size * .8f;
             listaCollidera.Add(col);

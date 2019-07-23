@@ -5,12 +5,12 @@ using Vuforia;
 
 public class MultiTargetDisabler : MonoBehaviour
 {
-    private List<GameObject> listaPostavljenihKutija;
+    private List<GameObject> listBoxPlaced;
     private string trackedBox;
     // Start is called before the first frame update
     void Start()
     {
-        listaPostavljenihKutija = new List<GameObject>();
+        listBoxPlaced = new List<GameObject>();
     }
     
     public void boxUnplaced(string name)
@@ -50,9 +50,9 @@ public class MultiTargetDisabler : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject obj = transform.GetChild(i).gameObject;
-            if (obj.name == name && listaPostavljenihKutija.Contains(obj))
+            if (obj.name == name && listBoxPlaced.Contains(obj))
             {
-                listaPostavljenihKutija.Remove(obj);
+                listBoxPlaced.Remove(obj);
             }
         }
     }
@@ -62,9 +62,9 @@ public class MultiTargetDisabler : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject obj = transform.GetChild(i).gameObject;
-            if (obj.name == name && !listaPostavljenihKutija.Contains(obj))
+            if (obj.name == name && !listBoxPlaced.Contains(obj))
             {
-                listaPostavljenihKutija.Add(obj);
+                listBoxPlaced.Add(obj);
             }
         }
     }
@@ -74,7 +74,7 @@ public class MultiTargetDisabler : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject obj = transform.GetChild(i).gameObject;
-            if (!listaPostavljenihKutija.Contains(obj))
+            if (!listBoxPlaced.Contains(obj))
             {
                 MultiTargetBehaviour mtb = obj.GetComponent<MultiTargetBehaviour>();
                 mtb.enabled = true;

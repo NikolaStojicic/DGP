@@ -8,11 +8,11 @@ public class PlaneDisabler : MonoBehaviour
     {
         this.gameObject.GetComponent<AnchorInputListenerBehaviour>().gameObject.SetActive(false);
         this.gameObject.GetComponent<PlaneFinderBehaviour>().gameObject.SetActive(false);
-        UI_Main ui_main = GameObject.FindObjectOfType<UI_Main>();
+        UI_Main ui = GameObject.FindObjectOfType<UI_Main>();
         //ui_main.setUiStatusText("Ground plane setted.");
         //ui_main.setUiStatusButtonText("Scan next");
         //ui_main.setUiStatusBtnInteractable(true);
-        ui_main.setUIALL(UIStatus.Green, "Ground plane placed successfuly!", "", false, "Scan box");
+        ui.setUIALL(UIStatus.Green, "Ground plane placed successfuly!", "", false, "Scan box");
     }
     // Start is called before the first frame update
     void Start()

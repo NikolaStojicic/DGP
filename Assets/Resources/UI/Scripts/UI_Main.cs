@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public enum UIStatus
 {
     Green,
@@ -11,13 +12,15 @@ public enum UIStatus
 
 public class UI_Main : MonoBehaviour
 {
-    private Image img_plc;
-    private Text ui_status;
-    private GameObject ui_btn;
     [SerializeField]
     private GameObject boxLogoList;
     [SerializeField]
+
+    private Image imgPlc;
+    private Text uiStatus;
+    private GameObject uiBtn;
     private float transparency;
+
     public string name;
 
     private Color green = new Color(0, 255, 0);
@@ -27,9 +30,9 @@ public class UI_Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        img_plc = GameObject.FindGameObjectWithTag("Img_plc").GetComponent<Image>();
-        ui_status = GameObject.FindGameObjectWithTag("Status").GetComponent<Text>();
-        ui_btn = GameObject.FindGameObjectWithTag("btn_plc");
+        imgPlc = GameObject.FindGameObjectWithTag("Img_plc").GetComponent<Image>();
+        uiStatus = GameObject.FindGameObjectWithTag("Status").GetComponent<Text>();
+        uiBtn = GameObject.FindGameObjectWithTag("btn_plc");
         green.a = transparency;
         red.a = transparency;
         grey.a = transparency;
@@ -47,7 +50,7 @@ public class UI_Main : MonoBehaviour
 
     public void setUiStatusText(string text)
     {
-        ui_status.text = text;
+        uiStatus.text = text;
     }
 
     public void setUiStatusSprite(string name)
@@ -57,7 +60,7 @@ public class UI_Main : MonoBehaviour
             GameObject bll = boxLogoList.transform.GetChild(i).gameObject;
             if (bll.name == name)
             {
-                img_plc.sprite = bll.GetComponent<SpriteRenderer>().sprite;
+                imgPlc.sprite = bll.GetComponent<SpriteRenderer>().sprite;
                 break;
             }
         }
@@ -66,12 +69,12 @@ public class UI_Main : MonoBehaviour
 
     public void setUiStatusBtnInteractable(bool bo)
     {
-        ui_btn.GetComponent<Button>().interactable = bo;
+        uiBtn.GetComponent<Button>().interactable = bo;
     }
 
     public void setUiStatusButtonText(string text)
     {
-        ui_btn.transform.GetComponentInChildren<Text>().text = text;
+        uiBtn.transform.GetComponentInChildren<Text>().text = text;
     }
 
     public void setUiStatusColor(UIStatus status)

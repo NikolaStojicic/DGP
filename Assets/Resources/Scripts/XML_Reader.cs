@@ -8,6 +8,7 @@ public class XML_Reader : MonoBehaviour
 
     [SerializeField]
     private TextAsset xml;
+
     private XmlDocument _document = new XmlDocument();
 
     private Dictionary<string, Vector3> dict = new Dictionary<string, Vector3>();

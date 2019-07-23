@@ -8,13 +8,14 @@ public class Collider_Controller : MonoBehaviour
     private Material green;
     [SerializeField]
     private Material red;
+
     private MultiTargetDisabler mtd;
-    private UI_Main ui_main;
+    private UI_Main ui;
 
     private void Start()
     {
         mtd = GameObject.FindObjectOfType<MultiTargetDisabler>();
-        ui_main = GameObject.FindObjectOfType<UI_Main>();
+        ui = GameObject.FindObjectOfType<UI_Main>();
     }
 
     private Vector3[] getCornersOfBoxCollider(GameObject b)
@@ -53,13 +54,13 @@ public class Collider_Controller : MonoBehaviour
             GetComponent<MeshRenderer>().material = green;
             //GameObject.Destroy(other.gameObject);
             mtd.boxPlaced(name);
-            ui_main.setUIALL(UIStatus.Green, "Box is on the place!", name, true, "Next");
+            ui.setUIALL(UIStatus.Green, "Box is on the place!", name, true, "Next");
         }
         else
         {
             GetComponent<MeshRenderer>().material = red;
             mtd.boxUnplaced(name);
-            ui_main.setUIALL(UIStatus.Red, "Box is NOT on the place!", name, false, "Scan again");
+            ui.setUIALL(UIStatus.Red, "Box is NOT on the place!", name, false, "Scan again");
         }
     }
 }

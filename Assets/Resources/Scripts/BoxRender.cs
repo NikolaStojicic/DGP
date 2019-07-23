@@ -11,10 +11,10 @@ public class BoxRender : MonoBehaviour
 
     private void UI_Control(string name)
     {
-        UI_Main ui_main = GameObject.FindObjectOfType<UI_Main>();
-        ui_main.setUiStatusSprite(name);
-        ui_main.setUiStatusText("Box is detected!");
-        ui_main.setUiStatusButtonText("Scan box");
+        UI_Main ui = GameObject.FindObjectOfType<UI_Main>();
+        ui.setUiStatusSprite(name);
+        ui.setUiStatusText("Box is detected!");
+        ui.setUiStatusButtonText("Place box");
     }
     public void RenderBox(string name, Vector3 pos, Vector3 size)
     {
