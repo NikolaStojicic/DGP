@@ -28,6 +28,8 @@ public class BoxRender : MonoBehaviour
             dictBox.Add(name, b);
             // Veza sa UI
             UI_Control(name);
+            SoundManager soundManager = GameObject.FindObjectOfType<SoundManager>();
+            soundManager.source.Play(0);
         }
     }
     // Start is called before the first frame update

@@ -20,5 +20,8 @@ public class ButtonHandler : MonoBehaviour
         mtd.boxPlaced(ui.name);
         mtd.enableMultiTargets();
         ui.setUIALL(UIStatus.Grey, "Scan next box!", "", false, "Scan next");
+
+        SoundManager soundManager = GameObject.FindObjectOfType<SoundManager>();
+        soundManager.source.PlayOneShot(soundManager.box);
     }
 }
