@@ -9,4 +9,8 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("MunchSCENA");
     }
+    public void StartRandomMode()
+    {
+        SceneManager.LoadScene("RandomModeSCENA");
+    }
 }

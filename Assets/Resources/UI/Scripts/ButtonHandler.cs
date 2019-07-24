@@ -17,6 +17,10 @@ public class ButtonHandler : MonoBehaviour
 
     public void nextScan()
     {
+
+        //radMode_RenderBoxesAtPosition redMode_RenderBoxesAt = GameObject.FindObjectOfType<radMode_RenderBoxesAtPosition>();
+
+
         mtd.destroyCollider(ui.name);
         mtd.boxPlaced(ui.name);
         mtd.enableMultiTargets();
