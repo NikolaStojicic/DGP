@@ -7,7 +7,8 @@ public class RenderBoxAtPosition : MonoBehaviour
     private XML_Reader xmlReader;
     private BoxRender boxRender;
     private int box;
-
+    private MultiTargetDisabler mtd;
+    
 
 
     public void RenderBox(string name)
@@ -18,7 +19,7 @@ public class RenderBoxAtPosition : MonoBehaviour
         Debug.Log("Detektujem: " + name + ", sa Vektrom3: " + size);
         Vector3 vek = paletPosition[name];
         boxRender.RenderBox(name, paletPosition[name], size);
-
+        mtd.disableMultiTargets(name);
     }
     private void initialization()
     {
@@ -34,6 +35,7 @@ public class RenderBoxAtPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mtd = FindObjectOfType<MultiTargetDisabler>();
         paletPosition = new Dictionary<string, Vector3>();
         this.initialization();
         xmlReader = GameObject.FindObjectOfType<XML_Reader>();
