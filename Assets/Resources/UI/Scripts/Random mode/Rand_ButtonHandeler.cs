@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Resources.Scripts.RandomMode;
 
 public class Rand_ButtonHandeler : MonoBehaviour
 {
     // Start is called before the first frame update
     private MultiTargetDisabler mtd;
     private UI_Main ui;
-
+    radMode_RenderBoxAtPosition redModeRende;
     void Start()
     {
         mtd = GameObject.FindObjectOfType<MultiTargetDisabler>();
         ui = GameObject.FindObjectOfType<UI_Main>();
+        redModeRende = GameObject.FindObjectOfType<radMode_RenderBoxAtPosition>();
     }
 
     public void nextScan()
     {
 
-        radMode_RenderBoxesAtPosition redModeRende = GameObject.FindObjectOfType<radMode_RenderBoxesAtPosition>();
-        redModeRende.BoxScaned(ui.name);
+       
+        
 
         mtd.destroyCollider(ui.name);
       //  mtd.boxPlaced(ui.name);
@@ -42,5 +44,20 @@ public class Rand_ButtonHandeler : MonoBehaviour
         }
         objText.GetComponent<Text>().text = "No. " + ++num;
     }
+
+
+
+    public void startPacking()
+    {
+       Box nextBox =redModeRende.NextBox();
+        if (nextBox == null)
+        {
+            ui.setUIALL(UIStatus.Grey, "All Boxex placed", "", false, "DONE");
+            return;
+        }
+        ui.setUIALL(UIStatus.Grey, "Next box to be placed", nextBox.Name, false, "");
+       
+    }
+
 }
 
