@@ -9,6 +9,7 @@ TagManager:
   - Img_plc
   - btn_plc
   - plane_fix
+  - box_num
   layers:
   - Default
   - TransparentFX

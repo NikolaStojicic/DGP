@@ -27,9 +27,8 @@ public class CustomETB : MonoBehaviour, ITrackableEventHandler
     protected TrackableBehaviour.Status m_NewStatus;
 
     #endregion // PROTECTED_MEMBER_VARIABLES
-
+    bool hardCodeFix;
     #region UNITY_MONOBEHAVIOUR_METHODS
-
     protected virtual void Start()
     {
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
@@ -132,6 +131,15 @@ public class CustomETB : MonoBehaviour, ITrackableEventHandler
             // Disable canvas':
             foreach (var component in canvasComponents)
                 component.enabled = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (!hardCodeFix)
+        {
+            this.gameObject.GetComponent<MultiTargetBehaviour>().enabled = false;
+            hardCodeFix = true;
         }
     }
 
