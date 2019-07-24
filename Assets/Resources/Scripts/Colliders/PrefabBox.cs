@@ -20,7 +20,7 @@ public class PrefabBox : MonoBehaviour
             GameObject b = this.transform.GetChild(i).gameObject;
             Vector3 size = xmlReader.getSizeByName(b.name);
             GameObject col = Instantiate(colliderPrefab, b.transform);
-            col.transform.localScale = size * .8f;
+            col.transform.localScale = size * .7f;//1.45, 1.53
             listaCollidera.Add(col);
         }
     }

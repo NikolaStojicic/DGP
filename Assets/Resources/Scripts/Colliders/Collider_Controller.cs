@@ -38,7 +38,7 @@ public class Collider_Controller : MonoBehaviour
         string name = other.gameObject.transform.parent.name;
 
         // Krajnje tacke boxa
-        Vector3[] verts = getCornersOfBoxCollider(other.gameObject);
+        Vector3[] verts = getCornersOfBoxCollider(other.gameObject.GetComponent<Collider>().gameObject);
         int numOfVertsContained = 0;
         for (int i = 0; i < verts.Length; i++)
         {
@@ -48,7 +48,7 @@ public class Collider_Controller : MonoBehaviour
                 numOfVertsContained++;
         }
         Debug.Log(numOfVertsContained);
-        if(numOfVertsContained >= 4)
+        if(numOfVertsContained >= 7)
         {
             //OVDE UPADA KOD UKOLIKO JE KUTIJA NA TACNOJ POZICIJI
             GetComponent<MeshRenderer>().material = green;
