@@ -53,13 +53,13 @@ public class Collider_Controller : MonoBehaviour
             //OVDE UPADA KOD UKOLIKO JE KUTIJA NA TACNOJ POZICIJI
             GetComponent<MeshRenderer>().material = green;
             //GameObject.Destroy(other.gameObject);
-            mtd.boxPlaced(name);
+            //mtd.boxPlaced(name);
             ui.setUIALL(UIStatus.Green, "Box is on the place!", name, true, "Next");
         }
         else
         {
             GetComponent<MeshRenderer>().material = red;
-            mtd.boxUnplaced(name);
+            //mtd.boxUnplaced(name);
             ui.setUIALL(UIStatus.Red, "Box is NOT on the place!", name, false, "Scan again");
         }
     }

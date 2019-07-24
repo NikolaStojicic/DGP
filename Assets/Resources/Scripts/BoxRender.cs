@@ -8,14 +8,19 @@ public class BoxRender : MonoBehaviour
     [SerializeField]
     private GameObject boxPrefab;
     private Dictionary<string,GameObject> dictBox;
-
+    private UI_Main uiMain;
     private void UI_Control(string name)
     {
-        UI_Main ui = GameObject.FindObjectOfType<UI_Main>();
-        ui.setUiStatusSprite(name);
-        ui.setUiStatusText("Box is detected!");
-        ui.setUiStatusButtonText("Place box");
+        uiMain.setUiStatusSprite(name);
+        uiMain.setUiStatusText("Box is detected!");
+        uiMain.setUiStatusButtonText("Place box");
     }
+
+    private void WrongBox(string name)
+    {
+        uiMain.setUIALL(UIStatus.Red, "Please scan right box!", "", false, "Scan box");
+    }
+
     public void RenderBox(string name, Vector3 pos, Vector3 size)
     {
         if (!dictBox.ContainsKey(name))
@@ -35,6 +40,7 @@ public class BoxRender : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uiMain = GameObject.FindObjectOfType<UI_Main>();
         dictBox = new Dictionary<string, GameObject>();
     }
 
