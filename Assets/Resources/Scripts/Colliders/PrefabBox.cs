@@ -15,6 +15,7 @@ public class PrefabBox : MonoBehaviour
         listOfColliders = new List<GameObject>();
         xml_reader = GameObject.FindObjectOfType<XML_Reader>();
         //listaMultiTargeta = new List<GameObject>();
+
         for (int i = 0; i < 7; i++)
         {
             GameObject b = this.transform.GetChild(i).gameObject;
@@ -22,7 +23,7 @@ public class PrefabBox : MonoBehaviour
             GameObject col = Instantiate(colliderPrefab, b.transform);
             
             col.transform.localScale = size * 0.8f;
-            listaCollidera.Add(col);
+            listOfColliders.Add(col);
         }
     }
 

@@ -13,7 +13,7 @@ public class BoxRender : MonoBehaviour
     private Dictionary<string,GameObject> dictBox;
 
     /// <summary>
-    /// Retriving position and dimension for drawing the box at the Ground Plane
+    /// Dohvata poziciju i dimenzije kutije, koju postavlja na GroundPlane
     /// </summary>
     /// <param name="name"></param>
     /// <param name="pos"></param>
@@ -22,16 +22,18 @@ public class BoxRender : MonoBehaviour
     {
         if (!dictBox.ContainsKey(name))
         {
-
             GameObject b = Instantiate(boxPrefab, this.transform.GetChild(0).transform);
-            b.transform.localPosition = pos ;
+            b.transform.localPosition = pos;
+
             Vector3 vecTmp = new Vector3(0, 0, 0);
-            vecTmp.y = 0.5f;
+            vecTmp.y = 0.01f;
+
             b.transform.localScale = size + vecTmp;
             b.transform.rotation = transform.rotation;
             dictBox.Add(name, b);
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {

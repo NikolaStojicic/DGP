@@ -8,6 +8,7 @@ public class Collider_Controller : MonoBehaviour
     private Material green;
     [SerializeField]
     private Material red;
+
     /// <summary>
     /// 
     /// </summary>
@@ -58,7 +59,8 @@ public class Collider_Controller : MonoBehaviour
         if (numOfVertsContained >= 7)
         {
             GetComponent<MeshRenderer>().material = green;
-            //GameObject.Destroy(other.gameObject);
+            GameObject.Destroy(this.gameObject);
+           
         }
         else
         {
