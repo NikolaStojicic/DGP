@@ -15,6 +15,7 @@ public class Rand_ScrollView : MonoBehaviour
     {
         this.redModeRende= GameObject.FindObjectOfType<radMode_RenderBoxAtPosition>();
         this.scrollViewText = this.GetComponentInChildren<Text>();
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,8 +25,8 @@ public class Rand_ScrollView : MonoBehaviour
     }
     public void palletPreview()
     {
-        if (this.enabled)
-            this.enabled = false;
+        if (this.gameObject.activeSelf)
+            this.gameObject.SetActive(false);
         else
         {
             StringBuilder msg = new StringBuilder();
@@ -41,7 +42,7 @@ public class Rand_ScrollView : MonoBehaviour
                 msg.AppendLine();
             }
             scrollViewText.text = msg.ToString();
-            this.enabled = true;
+            this.gameObject.SetActive(true);
         }
     }
 }
