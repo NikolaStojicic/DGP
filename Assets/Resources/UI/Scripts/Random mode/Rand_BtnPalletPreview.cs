@@ -9,7 +9,7 @@ public class Rand_BtnPalletPreview : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scrollViewScript = GameObject.FindObjectOfType<Rand_ScrollView>();
+      
     }
 
     // Update is called once per frame
@@ -19,6 +19,8 @@ public class Rand_BtnPalletPreview : MonoBehaviour
     }
     public void btnScrollPreview()
     {
-        this.scrollViewScript.palletPreview();
+        scrollViewScript = GameObject.FindObjectOfType<Rand_ScrollView>();
+        if (this.scrollViewScript !=null)
+            this.scrollViewScript.palletPreview();
     }
 }

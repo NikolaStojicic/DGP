@@ -11,6 +11,7 @@ TagManager:
   - plane_fix
   - box_num
   - rand_listBox
+  - rand_ScrollView
   layers:
   - Default
   - TransparentFX
