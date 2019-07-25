@@ -82,10 +82,9 @@ public class UI_Main : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            Image img = transform.GetChild(i).gameObject.GetComponent<Image>();
-            if (transform.GetChild(i).gameObject.name != "Back" && transform.GetChild(i).gameObject.name !="BoxNum" )
+            if (transform.GetChild(i).gameObject.name == "Headline" || transform.GetChild(i).gameObject.name =="Footer" )
             {
-
+                Image img = transform.GetChild(i).gameObject.GetComponent<Image>();
                 if (status == UIStatus.Green)
                 {
                     img.color = green;

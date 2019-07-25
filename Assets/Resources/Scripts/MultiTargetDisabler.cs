@@ -81,7 +81,7 @@ public class MultiTargetDisabler : MonoBehaviour
                 mtb.enabled = true;
             }
         }
-    }
+     }
 
     public void disableMultiTargets(string name)
     {

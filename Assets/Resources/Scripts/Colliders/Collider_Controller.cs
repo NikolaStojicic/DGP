@@ -38,28 +38,27 @@ public class Collider_Controller : MonoBehaviour
         string name = other.gameObject.transform.parent.name;
 
         // Krajnje tacke boxa
-        Vector3[] verts = getCornersOfBoxCollider(other.gameObject);
+        Vector3[] verts = getCornersOfBoxCollider(other.gameObject.GetComponent<Collider>().gameObject);
         int numOfVertsContained = 0;
-        for (int i = 0; i < verts.Length; i++)
+        Bounds bd = GetComponent<Collider>().bounds;
+        if (bd.Contains(verts[0]) && bd.Contains(verts[1]) && bd.Contains(verts[4]) && bd.Contains(verts[5]))
         {
-            Debug.Log(verts[i]);
-            Vector3 vec = verts[i]; 
-            if (GetComponent<Collider>().bounds.Contains(verts[i]))
-                numOfVertsContained++;
+            numOfVertsContained += 4;
+        }
+        if (bd.Contains(verts[2]) && bd.Contains(verts[3]) && bd.Contains(verts[6]) && bd.Contains(verts[7]))
+        {
+            numOfVertsContained += 4;
         }
         Debug.Log(numOfVertsContained);
-        if(numOfVertsContained >= 4)
+        if (numOfVertsContained >= 2)
         {
             //OVDE UPADA KOD UKOLIKO JE KUTIJA NA TACNOJ POZICIJI
             GetComponent<MeshRenderer>().material = green;
-            //GameObject.Destroy(other.gameObject);
-            //mtd.boxPlaced(name);
             ui.setUIALL(UIStatus.Green, "Box is on the place!", name, true, "Next");
         }
         else
         {
             GetComponent<MeshRenderer>().material = red;
-            //mtd.boxUnplaced(name);
             ui.setUIALL(UIStatus.Red, "Box is NOT on the place!", name, false, "Scan again");
         }
     }
