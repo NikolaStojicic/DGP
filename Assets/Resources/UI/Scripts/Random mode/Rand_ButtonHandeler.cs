@@ -13,17 +13,14 @@ public class Rand_ButtonHandeler : MonoBehaviour
     private UI_Main ui;
     radMode_RenderBoxAtPosition redModeRende;
     bool firstTimeLucky = true;
-    Text scrollViewText;
-    GameObject ScrollRect;
+   
 
     void Start()
     {
         mtd = GameObject.FindObjectOfType<MultiTargetDisabler>();
         ui = GameObject.FindObjectOfType<UI_Main>();
         redModeRende = GameObject.FindObjectOfType<radMode_RenderBoxAtPosition>();
-        ScrollRect = GameObject.FindGameObjectWithTag("rand_ScrollView");
-        this.scrollViewText = ScrollRect.GetComponentInChildren<Text>();
-        this.ScrollRect.SetActive(false);
+       
 
     }
 
@@ -68,29 +65,6 @@ public class Rand_ButtonHandeler : MonoBehaviour
         string message = "Next box to be placed is: " + nextBox.Name;
         ui.setUIALL(UIStatus.Grey, message, nextBox.Name, false, "");
 
-    }
-
-    public void btnPalletPreview()
-    {
-       if (ScrollRect.activeSelf)
-            ScrollRect.gameObject.SetActive(false);
-        else
-        {
-            StringBuilder msg = new StringBuilder();
-            msg.AppendLine("PALLET STAT");
-            foreach (Box box in this.redModeRende.getBoxesAtPallet())
-            {
-                // Text tmp = ScrollRect.transform.GetComponent<Text>();
-                //Text tmp = ScrollRect.GetComponentInChildren<Text>();
-                msg.Append("Box name:");
-                msg.Append(box.Name);
-                msg.Append(" ,box size: ");
-                msg.Append(box.Size.ToString());
-                msg.AppendLine();
-            }
-            scrollViewText.text = msg.ToString();
-            ScrollRect.gameObject.SetActive(true);
-        }
     }
 
 }

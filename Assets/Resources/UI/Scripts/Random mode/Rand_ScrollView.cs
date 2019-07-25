@@ -22,7 +22,7 @@ public class Rand_ScrollView : MonoBehaviour
     {
         
     }
-    public void btnPalletPreview()
+    public void palletPreview()
     {
         if (this.enabled)
             this.enabled = false;
@@ -41,7 +41,7 @@ public class Rand_ScrollView : MonoBehaviour
                 msg.AppendLine();
             }
             scrollViewText.text = msg.ToString();
-            ScrollRect.gameObject.SetActive(true);
+            this.enabled = true;
         }
     }
 }
