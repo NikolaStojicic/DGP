@@ -7,50 +7,43 @@ using Assets.Resources.Scripts.RandomMode;
 
 public class radMode_RenderBoxAtPosition : MonoBehaviour
 {
+    #region Variables
     private Dictionary<string, Vector3> paletPosition;
     private XML_Reader xmlReader;
     private BoxRender boxRender;
     private int boxPointer;
-    private List<GameObject> listaMultiTargeta;
-    [SerializeField]
-    private GameObject colliderPrefab;
-    private List<GameObject> listaCollidera;
-    // Start is called before the first frame update
+
     List<Box> boxesAtPallet;
     List<Box> scanBoxes;
+    SliderHandeler _slider;
+    #endregion
 
     public Box NextBox()    //prvo vrati sve sa prvog nivoa
     {
+        this.boxesAtPallet.Add(this.scanBoxes[boxPointer]);
         if (boxPointer < this.scanBoxes.Count)
         {
             RenderBox(this.scanBoxes[boxPointer].Name);
-            this.makeBlueBox(this.scanBoxes[boxPointer].Name);
+            radMode_BoxColider[] prefabList = GameObject.FindObjectsOfType<radMode_BoxColider>();
+            foreach (var item in prefabList)
+            {
+                if(item.name== this.scanBoxes[boxPointer].Name)
+                {
+                    item.makeBlueBox(this.scanBoxes[boxPointer].Name);
+                    break;
+                }
+            }
             return this.scanBoxes[boxPointer++];
         }
         return null;
 
     }
-
-
-    public void makeBlueBox(string boxName)
+    public List<Box> getBoxesAtPallet()
     {
-        listaCollidera = new List<GameObject>();
-        xmlReader = GameObject.FindObjectOfType<XML_Reader>();
-        listaMultiTargeta = new List<GameObject>();
-        GameObject randListaBox = GameObject.FindGameObjectWithTag("rand_listBox");
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            GameObject b = randListaBox.transform.GetChild(i).gameObject;
-            if (boxName == b.name)
-            {
-
-                Vector3 size = xmlReader.getSizeByName(b.name);
-                GameObject col = Instantiate(colliderPrefab, b.transform);
-                col.transform.localScale = size * .8f;
-                listaCollidera.Add(col);
-            }
-        }
+        return this.boxesAtPallet;
     }
+   
+
 
     public void BoxScaned(string boxName)
     {
@@ -63,7 +56,8 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
             SoundManager soundManager = GameObject.FindObjectOfType<SoundManager>();
             soundManager.source.Play(0);
             UI_Main ui = GameObject.FindObjectOfType<UI_Main>();
-            ui.setUiStatusSprite(boxName);
+           // ui.setUiStatusSprite(boxName);
+            ui.setUIALL(UIStatus.Grey, "Number of boxes scaned: " + this.scanBoxes.Count, boxName, true, "Finish scaning");
 
         }
     }
@@ -101,6 +95,8 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         this.scanBoxes = new List<Box>();
         this.boxesAtPallet = new List<Box>();
         this.boxPointer = 0;
+
+       
 
     }
 
