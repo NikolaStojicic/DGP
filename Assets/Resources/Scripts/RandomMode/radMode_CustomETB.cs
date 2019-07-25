@@ -68,7 +68,7 @@ public class radMode_CustomETB : MonoBehaviour, ITrackableEventHandler
         {
             // radMode_RenderBoxAtPosition render = GetComponent<radMode_RenderBoxAtPosition>();
             radMode_RenderBoxAtPosition render = GameObject.FindObjectOfType<radMode_RenderBoxAtPosition > ();
-            render.RenderBox(mTrackableBehaviour.TrackableName);
+            render.BoxScaned(mTrackableBehaviour.TrackableName);
             OnTrackingFound();
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&

@@ -10,6 +10,7 @@ TagManager:
   - btn_plc
   - plane_fix
   - box_num
+  - rand_listBox
   layers:
   - Default
   - TransparentFX

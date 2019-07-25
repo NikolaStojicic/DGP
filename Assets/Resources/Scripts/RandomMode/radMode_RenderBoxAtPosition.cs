@@ -11,29 +11,66 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
     private XML_Reader xmlReader;
     private BoxRender boxRender;
     private int boxPointer;
-
-    List<Box> boxesAtPallet ;
+    private List<GameObject> listaMultiTargeta;
+    [SerializeField]
+    private GameObject colliderPrefab;
+    private List<GameObject> listaCollidera;
+    // Start is called before the first frame update
+    List<Box> boxesAtPallet;
     List<Box> scanBoxes;
 
     public Box NextBox()    //prvo vrati sve sa prvog nivoa
     {
         if (boxPointer < this.scanBoxes.Count)
+        {
+            RenderBox(this.scanBoxes[boxPointer].Name);
+            this.makeBlueBox(this.scanBoxes[boxPointer].Name);
             return this.scanBoxes[boxPointer++];
+        }
         return null;
 
     }
+
+
+    public void makeBlueBox(string boxName)
+    {
+        listaCollidera = new List<GameObject>();
+        xmlReader = GameObject.FindObjectOfType<XML_Reader>();
+        listaMultiTargeta = new List<GameObject>();
+        GameObject randListaBox = GameObject.FindGameObjectWithTag("rand_listBox");
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject b = randListaBox.transform.GetChild(i).gameObject;
+            if (boxName == b.name)
+            {
+
+                Vector3 size = xmlReader.getSizeByName(b.name);
+                GameObject col = Instantiate(colliderPrefab, b.transform);
+                col.transform.localScale = size * .8f;
+                listaCollidera.Add(col);
+            }
+        }
+    }
+
     public void BoxScaned(string boxName)
     {
         Vector3 size = xmlReader.getSizeByName(boxName);
         Vector3 position = this.paletPosition[boxName];
         Box tmp = this.scanBoxes.Find(el => el.Name == boxName);
         if (tmp == null)
+        {
             this.scanBoxes.Add(new Box(boxName, size, position));
+            SoundManager soundManager = GameObject.FindObjectOfType<SoundManager>();
+            soundManager.source.Play(0);
+            UI_Main ui = GameObject.FindObjectOfType<UI_Main>();
+            ui.setUiStatusSprite(boxName);
+
+        }
     }
     public void RenderBox(string name)
     {
-        this.BoxScaned(name);
-        // boxRender = GameObject.FindObjectsOfType<BoxRender>()[0];
+        //  this.BoxScaned(name);
+        boxRender = GameObject.FindObjectsOfType<BoxRender>()[0];
         Vector3 size = xmlReader.getSizeByName(name);
         size = size * 1;
         Debug.Log("Detektujem: " + name + ", sa Vektrom3: " + size);
@@ -55,7 +92,7 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        boxRender = GameObject.FindObjectsOfType<BoxRender>()[0];
+        //  boxRender = GameObject.FindObjectsOfType<BoxRender>()[1];
 
         paletPosition = new Dictionary<string, Vector3>();
         this.initialization();
