@@ -39,10 +39,10 @@ public class Rand_ButtonHandeler : MonoBehaviour
         SoundManager soundManager = GameObject.FindObjectOfType<SoundManager>();
         soundManager.source.PlayOneShot(soundManager.box);
 
-        GameObject objText = GameObject.FindGameObjectWithTag("box_num").gameObject;
 
+        redModeRende.boxPlaced(this.currentBox.Name);
+        GameObject objText = GameObject.FindGameObjectWithTag("box_num").gameObject;
         objText.GetComponent<Text>().text = this.redModeRende.numOfBoxexPlaced().ToString();
-        //redModeRende.boxPlaced(this.currentBox.Name);
         this.startPacking();
 
     }

@@ -29,7 +29,6 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
 
     public Box NextBox()    //prvo vrati sve sa prvog nivoa
     {
-       
         if (boxPointer < this.scanBoxes.Count)
         {
             RenderBox(this.scanBoxes[boxPointer].Name);
