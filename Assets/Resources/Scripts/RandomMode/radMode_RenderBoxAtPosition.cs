@@ -15,6 +15,8 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
 
     List<Box> boxesAtPallet;
     List<Box> scanBoxes;
+    List<string> boxesAtLevel1;
+    List<string> boxesAtLevel2;
     SliderHandeler _slider;
     #endregion
     public void boxPlaced(string boxName ){
@@ -27,31 +29,75 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         return this.boxesAtPallet.Count;
     }
 
+    /// <summary>
+    /// Vraca nivo na kojoj se nalazi kutija
+    /// nivo = {1, 2}
+    /// </summary>
+    /// <param name="boxName"></param>
+    /// <returns></returns>
+    private int getMyLevel(string boxName)
+    {
+        if (boxesAtLevel1.Contains(boxName))
+        {
+            return 1;
+        }
+        if (boxesAtLevel2.Contains(boxName))
+        {
+            return 2;
+        }
+        return -1;
+    }
+
     public Box NextBox()    //prvo vrati sve sa prvog nivoa
     {
         if (boxPointer < this.scanBoxes.Count)
         {
-            RenderBox(this.scanBoxes[boxPointer].Name);
-            radMode_BoxColider[] prefabList = GameObject.FindObjectsOfType<radMode_BoxColider>();
-            foreach (var item in prefabList)
+
+            if (getMyLevel(this.scanBoxes[this.boxPointer].Name) == 2)
             {
-                if(item.name== this.scanBoxes[boxPointer].Name)
+                //proveri da li su sve na prvom nivou postavljene
+
+                foreach (string boxAtLevel1 in boxesAtLevel1)
                 {
-                    item.makeBlueBox(this.scanBoxes[boxPointer].Name);
-                    break;
+                    Box myBox = boxesAtPallet.Find(el=>el.Name.Equals(boxAtLevel1));
+                    if (myBox == null)
+                    {
+                        UI_Main ui = GameObject.FindObjectOfType<UI_Main>();
+                        ui.setUiStatusText("First finish level 1!");
+                        ui.setUiStatusColor(UIStatus.Red);
+                        this.scanBoxes.Add(myBox);
+                        this.boxPointer++;
+                        break;
+                    }
                 }
             }
-            return this.scanBoxes[boxPointer++];
+            if (boxPointer < this.scanBoxes.Count)
+            {
+                RenderBox(this.scanBoxes[boxPointer].Name);
+
+                radMode_BoxColider[] prefabList = GameObject.FindObjectsOfType<radMode_BoxColider>();
+                foreach (var item in prefabList)
+                {
+                    if (item.name == this.scanBoxes[boxPointer].Name)
+                    {
+                        item.makeBlueBox(this.scanBoxes[boxPointer].Name);
+                        break;
+                    }
+                }
+                return this.scanBoxes[boxPointer++];
+
+            }
+           
         }
         return null;
 
     }
+
     public List<Box> getBoxesAtPallet()
     {
         return this.boxesAtPallet;
     }
    
-
 
     public void BoxScaned(string boxName)
     {
@@ -69,6 +115,66 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
 
         }
     }
+
+    /// <summary>
+    /// Postavlja zeljenu kombinaciju, koju korisnik zadaje iz User interfacea
+    /// </summary>
+    /// <param name="i">Redni broj kombinacije</param>
+    public void setOption(int i)
+    {
+        paletPosition = new Dictionary<string, Vector3>();
+
+        if (i == 0)
+        {
+            initialization1();
+        }
+        if (i == 1)
+        {
+            initialization2();
+
+        }
+
+        boxesAtLevel1 = getBoxesAtLevel(1);
+        boxesAtLevel2 = getBoxesAtLevel(2);
+    }
+
+    public List<string> getBoxesAtLevel(int i)
+    {
+        List<string> boxesAtLevel = new List<string>();
+
+        if (i == 1)
+        {
+            foreach (KeyValuePair<string, Vector3> currentPaletPosition in paletPosition)
+            {
+                Vector3 sizeOfCurrentBox = xmlReader.getSizeByName(currentPaletPosition.Key);
+                Vector3 positionOnPalet = currentPaletPosition.Value;
+
+                if (positionOnPalet.z + sizeOfCurrentBox.y / 2 >= 0)
+                {
+                    boxesAtLevel.Add(currentPaletPosition.Key);
+                }
+
+            }
+
+        }
+        if (i == 2)
+        {
+            foreach (KeyValuePair<string, Vector3> paletPosition in paletPosition)
+            {
+                Vector3 sizeOfCurrentBox = xmlReader.getSizeByName(paletPosition.Key);
+                Vector3 positionOnPalet = paletPosition.Value;
+
+                if (positionOnPalet.z + sizeOfCurrentBox.y / 2 < 0)
+                {
+                    boxesAtLevel.Add(paletPosition.Key);
+                }
+
+            }
+
+        }
+        return boxesAtLevel;
+    }
+
     public void RenderBox(string name)
     {
         //  this.BoxScaned(name);
@@ -80,10 +186,16 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         boxRender.RenderBox(name, paletPosition[name], size);
 
     }
-    private void initialization()
+    /// <summary>
+    /// Funkcija inicijalizuje Dictionary, koji mapira naziv kutije na njenu poziciju na paleti
+    /// Pozicije na paleti su unapred definisane i rucno izracunate
+    /// Sve kutije su direktno postavljene na paletu(u direktnom kontaktu sa njom) 
+    /// Broj nivoa: 1
+    /// </summary>
+    private void initialization1()
     {
         paletPosition.Add("k7", new Vector3(-.2f, -.1f, -.075f));
-        paletPosition.Add("k1", new Vector3(-0.2f, 0.25f, -0.02f));
+        paletPosition.Add("k1", new Vector3(-0.2f, 0.25f, -0.025f));
         paletPosition.Add("k6", new Vector3(-.05f, -.1f, -.04f));
         paletPosition.Add("k5", new Vector3(-0.04f, 0.25f, -0.05f));
         paletPosition.Add("k2", new Vector3(-0.04f, 0.075f, -0.02f));
@@ -91,14 +203,42 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         paletPosition.Add("k4", new Vector3(0.06f, -0.1f, -0.035f));
 
     }
+
+    /// <summary>
+    /// Funkcija inicijalizuje Dictionary, koji mapira naziv kutije na njenu poziciju na paleti
+    /// Pozicije na paleti su unapred definisane i rucno izracunate
+    /// Kutije ne moraju da budu direktno postavljene na paletu
+    /// Broj nivoa: 2
+    /// </summary>
+    private void initialization2()
+    {
+        paletPosition.Add("k7", new Vector3(-.2f, -.1f, -.075f));
+        paletPosition.Add("k1", new Vector3(-0.2f, 0.25f, -0.025f));
+        paletPosition.Add("k6", new Vector3(-.05f, -.1f, -.04f));
+        paletPosition.Add("k5", new Vector3(-0.04f, 0.25f, -0.05f));
+        paletPosition.Add("k2", new Vector3(-0.2f, 0.25f, -0.079942f));
+        paletPosition.Add("k3", new Vector3(-.2f, 0.05f, -.05f));
+        paletPosition.Add("k4", new Vector3(0.06f, -0.1f, -0.035f));
+        //paletPositions.Add("k7", new Vector3(-.2f, -.1f, -.075f));
+        //paletPositions.Add("k1", new Vector3(-0.2f, 0.25f, -0.02f)); //Kozel
+        //paletPositions.Add("k6", new Vector3(-.05f, -.1f, -.04f));
+        //paletPositions.Add("k5", new Vector3(-0.04f, 0.25f, -0.06f));
+        //paletPositions.Add("k2", new Vector3(-0.2f, 0.25f, -0.079942f)); //Tuborg
+        //paletPositions.Add("k3", new Vector3(-.2f, 0.05f, -.05f));
+        //paletPositions.Add("k4", new Vector3(0.06f, -0.1f, -0.035f));
+
+    }
     // Start is called before the first frame update
     void Start()
     {
         //  boxRender = GameObject.FindObjectsOfType<BoxRender>()[1];
 
-        paletPosition = new Dictionary<string, Vector3>();
-        this.initialization();
+        //paletPosition = new Dictionary<string, Vector3>();
         xmlReader = GameObject.FindObjectOfType<XML_Reader>();
+        int option = 1;
+        setOption(option);
+
+       
 
         this.scanBoxes = new List<Box>();
         this.boxesAtPallet = new List<Box>();
