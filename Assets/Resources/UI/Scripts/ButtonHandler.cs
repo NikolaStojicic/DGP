@@ -17,29 +17,33 @@ public class ButtonHandler : MonoBehaviour
 
     public void nextScan()
     {
+        RenderBoxAtPosition renderBoxAtPosition = GameObject.FindObjectOfType<RenderBoxAtPosition>();
+        renderBoxAtPosition.addToPlacedBoxList(ui.name);
 
         //radMode_RenderBoxesAtPosition redMode_RenderBoxesAt = GameObject.FindObjectOfType<radMode_RenderBoxesAtPosition>();
 
 
         mtd.destroyCollider(ui.name);
         mtd.boxPlaced(ui.name);
-        mtd.enableMultiTargets();
+        
         ui.setUIALL(UIStatus.Grey, "Scan next box!", "", false, "Scan next");
 
         SoundManager soundManager = GameObject.FindObjectOfType<SoundManager>();
         soundManager.source.PlayOneShot(soundManager.box);
 
         GameObject objText = GameObject.FindGameObjectWithTag("box_num").gameObject;
-        int num;
-        try
-        {
-            num = int.Parse((objText.GetComponent<Text>().text.Split(' '))[1]);
-        }
-        catch (System.Exception)
-        {
+        //int num;
+        //try
+        //{
+        //    num = int.Parse((objText.GetComponent<Text>().text.Split(' '))[1]);
+        //}
+        //catch (System.Exception)
+        //{
 
-            num = 0;
-        }
-        objText.GetComponent<Text>().text = "No. " + ++num;
+        //    num = 0;
+        //}
+        //objText.GetComponent<Text>().text = "No. " + ++num;
+
+        mtd.enableMultiTargets();
     }
 }

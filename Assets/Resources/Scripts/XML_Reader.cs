@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 
+
 public class XML_Reader : MonoBehaviour
 {
 
@@ -57,11 +58,11 @@ public class XML_Reader : MonoBehaviour
             }
         }
 
-        foreach (KeyValuePair<string,Vector3> entry in dict)
-        {
-            Debug.Log(entry.Key);
-            Debug.Log(entry.Value);
-        }
+        //foreach (KeyValuePair<string,Vector3> entry in dict)
+        //{
+        //    Debug.Log(entry.Key);
+        //    Debug.Log(entry.Value);
+        //}
     }
 
         // Update is called once per frame
