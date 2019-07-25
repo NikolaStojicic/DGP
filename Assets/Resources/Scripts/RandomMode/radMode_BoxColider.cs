@@ -33,9 +33,9 @@ public class radMode_BoxColider : MonoBehaviour
         }
        
     }
-    public void destroyBlueBox()
+   /* public void destroyBlueBox()
     {
         DestroyImmediate(this.colider);
         
-    }
+    }*/
 }

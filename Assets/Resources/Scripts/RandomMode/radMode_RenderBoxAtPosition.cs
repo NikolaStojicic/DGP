@@ -20,7 +20,7 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
 
     public Box NextBox()    //prvo vrati sve sa prvog nivoa
     {
-        this.boxesAtPallet.Add(this.scanBoxes[boxPointer]);
+        this.boxesAtPallet.Add(this.scanBoxes[boxPointer++]);
         if (boxPointer < this.scanBoxes.Count)
         {
             RenderBox(this.scanBoxes[boxPointer].Name);
@@ -33,7 +33,7 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
                     break;
                 }
             }
-            return this.scanBoxes[boxPointer++];
+            return this.scanBoxes[boxPointer];
         }
         return null;
 
