@@ -17,10 +17,19 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
     List<Box> scanBoxes;
     SliderHandeler _slider;
     #endregion
+    public void boxPlaced(string boxName ){
+        Box box = this.scanBoxes.Find(el => el.Name == boxName);
+        this.boxesAtPallet.Add(box);
+    }
+
+    public int numOfBoxexPlaced()
+    {
+        return this.boxesAtPallet.Count;
+    }
 
     public Box NextBox()    //prvo vrati sve sa prvog nivoa
     {
-        this.boxesAtPallet.Add(this.scanBoxes[boxPointer++]);
+       
         if (boxPointer < this.scanBoxes.Count)
         {
             RenderBox(this.scanBoxes[boxPointer].Name);
@@ -33,7 +42,7 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
                     break;
                 }
             }
-            return this.scanBoxes[boxPointer];
+            return this.scanBoxes[boxPointer++];
         }
         return null;
 

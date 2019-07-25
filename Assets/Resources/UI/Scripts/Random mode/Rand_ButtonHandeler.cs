@@ -13,7 +13,7 @@ public class Rand_ButtonHandeler : MonoBehaviour
     private UI_Main ui;
     radMode_RenderBoxAtPosition redModeRende;
     bool firstTimeLucky = true;
-   
+    Box currentBox;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class Rand_ButtonHandeler : MonoBehaviour
             this.firstTimeLucky = false;
             return;
         }
-        mtd.destroyCollider(ui.name);
+        mtd.destroyCollider(currentBox.Name);
       //  mtd.boxPlaced(ui.name);
         mtd.enableMultiTargets();
 
@@ -40,17 +40,9 @@ public class Rand_ButtonHandeler : MonoBehaviour
         soundManager.source.PlayOneShot(soundManager.box);
 
         GameObject objText = GameObject.FindGameObjectWithTag("box_num").gameObject;
-        int num;
-        try
-        {
-            num = int.Parse((objText.GetComponent<Text>().text.Split(' '))[1]);
-        }
-        catch (System.Exception)
-        {
 
-            num = 0;
-        }
-        objText.GetComponent<Text>().text = "No. " + ++num;
+        objText.GetComponent<Text>().text = this.redModeRende.numOfBoxexPlaced().ToString();
+        //redModeRende.boxPlaced(this.currentBox.Name);
         this.startPacking();
 
     }
@@ -64,7 +56,7 @@ public class Rand_ButtonHandeler : MonoBehaviour
         }
         string message = "Next box to be placed is: " + nextBox.Name;
         ui.setUIALL(UIStatus.Grey, message, nextBox.Name, false, "");
-
+        currentBox = nextBox;
     }
 
 }
