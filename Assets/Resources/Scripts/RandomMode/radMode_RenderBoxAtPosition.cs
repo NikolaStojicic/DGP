@@ -235,8 +235,8 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
 
         //paletPosition = new Dictionary<string, Vector3>();
         xmlReader = GameObject.FindObjectOfType<XML_Reader>();
-        int option = 1;
-        setOption(option);
+        //int option = 1;
+        setOption(SliderHandler.boxHeightLevel);
 
        
 

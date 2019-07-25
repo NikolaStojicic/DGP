@@ -11,4 +11,8 @@ public class SliderHandler : MonoBehaviour
         boxHeightLevel =  (int)this.GetComponent<Slider>().value;
         Debug.Log(boxHeightLevel);
     }
+    private void Start()
+    {
+        this.GetComponent<Slider>().value = boxHeightLevel;
+    }
 }

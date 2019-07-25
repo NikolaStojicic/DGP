@@ -188,8 +188,8 @@ public class RenderBoxAtPosition : MonoBehaviour
         mtd = FindObjectOfType<MultiTargetDisabler>();
         paletPosition = new Dictionary<string, Vector3>();
         placedBoxes = new List<string>();
-        //setOption(SliderHandler.boxHeightLevel);
-        setOption(0);
+        setOption(SliderHandler.boxHeightLevel);
+       // setOption(0);
         
     }
 

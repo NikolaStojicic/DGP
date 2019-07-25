@@ -23,5 +23,9 @@ public class SoundManager : MonoBehaviour
         
     }
 
+    public void PlayClick()
+    {
+        source.Play();
+    }
    
 }
