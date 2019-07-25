@@ -1768,9 +1768,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Aplikacija kreirana da pomogne logisti\u010Darima da slo\u017Ee kutije
-    na optimalnom mestu. \n\nRadili:\nPavle Ba\u010Dvanski\nJovan Jovanovi\u0107\nMina
-    Raci\u0107\nNikola Stoji\u010Di\u0107"
+  m_Text: "Application created for warehouse workers to help them stack various types
+    of boxes.\n\nby:\nPavle Ba\u010Dvanski\nJovan Jovanovi\u0107\nMina Raci\u0107\nNikola
+    Stoji\u010Di\u0107"
 --- !u!1 &4826912346930043278
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,13 +36,13 @@ public class Rand_ButtonHandeler : MonoBehaviour
       //  mtd.boxPlaced(ui.name);
         mtd.enableMultiTargets();
 
-        SoundManager soundManager = GameObject.FindObjectOfType<SoundManager>();
-        soundManager.source.PlayOneShot(soundManager.box);
+        //SoundManager soundManager = GameObject.FindObjectOfType<SoundManager>();
+        //soundManager.source.PlayOneShot(soundManager.box);
 
 
         redModeRende.boxPlaced(this.currentBox.Name);
         GameObject objText = GameObject.FindGameObjectWithTag("box_num").gameObject;
-        objText.GetComponent<Text>().text = this.redModeRende.numOfBoxexPlaced().ToString();
+        objText.GetComponent<Text>().text = "No. "+this.redModeRende.numOfBoxexPlaced().ToString();
         this.startPacking();
 
     }
@@ -51,7 +51,7 @@ public class Rand_ButtonHandeler : MonoBehaviour
         Box nextBox = redModeRende.NextBox();
         if (nextBox == null)
         {
-            ui.setUIALL(UIStatus.Grey, "All Boxex placed", "", false, "DONE");
+            ui.setUIALL(UIStatus.Grey, "All Boxex placed", "complete", false, "DONE");
             return;
         }
         string message = "Next box to be placed is: " + nextBox.Name;

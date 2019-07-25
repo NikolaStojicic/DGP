@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+
    public void StartApp()
     {
         SceneManager.LoadScene("MunchSCENA");

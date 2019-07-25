@@ -32,17 +32,17 @@ public class ButtonHandler : MonoBehaviour
         soundManager.source.PlayOneShot(soundManager.box);
 
         GameObject objText = GameObject.FindGameObjectWithTag("box_num").gameObject;
-        //int num;
-        //try
-        //{
-        //    num = int.Parse((objText.GetComponent<Text>().text.Split(' '))[1]);
-        //}
-        //catch (System.Exception)
-        //{
+        int num;
+        try
+        {
+            num = int.Parse((objText.GetComponent<Text>().text.Split(' '))[1]);
+        }
+        catch (System.Exception)
+        {
 
-        //    num = 0;
-        //}
-        //objText.GetComponent<Text>().text = "No. " + ++num;
+            num = 0;
+        }
+        objText.GetComponent<Text>().text = "No. " + ++num;
 
         mtd.enableMultiTargets();
     }

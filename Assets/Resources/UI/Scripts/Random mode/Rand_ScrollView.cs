@@ -25,7 +25,8 @@ public class Rand_ScrollView : MonoBehaviour
     }
     public void palletPreview()
     {
-      
+
+        float zapremina = 0;
             StringBuilder msg = new StringBuilder();
             msg.AppendLine("PALLET STAT:");
         this.redModeRende = GameObject.FindObjectOfType<radMode_RenderBoxAtPosition>();
@@ -44,13 +45,23 @@ public class Rand_ScrollView : MonoBehaviour
                // msg.AppendLine("################");
                 msg.Append("Box name:");
                 msg.Append(box.Name);
+                msg.Append(box.Size.x);
+                msg.Append("m²x ");
+                msg.Append(box.Size.z);
+                msg.Append("m²");
+                float povrsina = box.Size.x * box.Size.z;
                 msg.Append("box size: ");
-                msg.Append(box.Size.ToString());
+                msg.Append(povrsina);
                 msg.AppendLine();
                 //msg.Append("################");
+                zapremina += povrsina * box.Size.y;
             }
         }
-            scrollViewText.text = msg.ToString();
+        msg.AppendLine();
+        msg.Append("Total volume of pallet: ");
+        msg.Append(zapremina);
+        msg.Append("m³");
+        scrollViewText.text = msg.ToString();
            
         
     }
