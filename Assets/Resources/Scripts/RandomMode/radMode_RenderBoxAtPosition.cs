@@ -4,31 +4,32 @@ using UnityEngine;
 using Assets.Resources.Scripts.RandomMode;
 
 
-
+/// <summary>
+/// Script added to ARCamera. 
+/// </summary>
 public class radMode_RenderBoxAtPosition : MonoBehaviour
 {
     #region Variables
     private Dictionary<string, Vector3> paletPosition;
     private XML_Reader xmlReader;
     private BoxRender boxRender;
-    private int boxPointer;
+    private int boxPointer;     //pointing at next box that need to be placed
 
-    List<Box> boxesAtPallet;
-    List<Box> scanBoxes;
+    List<Box> boxesAtPallet;    //list of current boxes at pallet
+    List<Box> scanBoxes;        //list of scan boxes
     List<string> boxesAtLevel1;
     List<string> boxesAtLevel2;
-    SliderHandeler _slider;
+    SliderHandeler _slider;     // 
     #endregion
+    //function for puting a new placed box at list boxesAtPallet
     public void boxPlaced(string boxName ){
         Box box = this.scanBoxes.Find(el => el.Name == boxName);
         this.boxesAtPallet.Add(box);
     }
-
     public int numOfBoxexPlaced()
     {
         return this.boxesAtPallet.Count;
     }
-
     /// <summary>
     /// Vraca nivo na kojoj se nalazi kutija
     /// nivo = {1, 2}
@@ -47,7 +48,7 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         }
         return -1;
     }
-
+    //Function for geting next box that need to be placed at pallet
     public Box NextBox()    //prvo vrati sve sa prvog nivoa
     {
         if (boxPointer < this.scanBoxes.Count)
@@ -92,13 +93,11 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         return null;
 
     }
-
+    //function for retutning list of current box at the pallet
     public List<Box> getBoxesAtPallet()
     {
         return this.boxesAtPallet;
     }
-   
-
     public void BoxScaned(string boxName)
     {
         Vector3 size = xmlReader.getSizeByName(boxName);
@@ -115,7 +114,6 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
 
         }
     }
-
     /// <summary>
     /// Postavlja zeljenu kombinaciju, koju korisnik zadaje iz User interfacea
     /// </summary>
@@ -137,7 +135,6 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         boxesAtLevel1 = getBoxesAtLevel(1);
         boxesAtLevel2 = getBoxesAtLevel(2);
     }
-
     public List<string> getBoxesAtLevel(int i)
     {
         List<string> boxesAtLevel = new List<string>();
@@ -174,7 +171,6 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         }
         return boxesAtLevel;
     }
-
     public void RenderBox(string name)
     {
         //  this.BoxScaned(name);
@@ -186,6 +182,7 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         boxRender.RenderBox(name, paletPosition[name], size);
 
     }
+    #region initialization
     /// <summary>
     /// Funkcija inicijalizuje Dictionary, koji mapira naziv kutije na njenu poziciju na paleti
     /// Pozicije na paleti su unapred definisane i rucno izracunate
@@ -203,7 +200,6 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         paletPosition.Add("k4", new Vector3(0.06f, -0.1f, -0.035f));
 
     }
-
     /// <summary>
     /// Funkcija inicijalizuje Dictionary, koji mapira naziv kutije na njenu poziciju na paleti
     /// Pozicije na paleti su unapred definisane i rucno izracunate
@@ -228,6 +224,7 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
         //paletPositions.Add("k4", new Vector3(0.06f, -0.1f, -0.035f));
 
     }
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -247,7 +244,6 @@ public class radMode_RenderBoxAtPosition : MonoBehaviour
        
 
     }
-
     // Update is called once per frame
     void Update()
     {

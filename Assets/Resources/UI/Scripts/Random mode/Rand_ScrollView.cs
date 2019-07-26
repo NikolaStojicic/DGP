@@ -5,6 +5,10 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Scroll view controler class
+/// </summary>
 public class Rand_ScrollView : MonoBehaviour
 {
     radMode_RenderBoxAtPosition redModeRende;
@@ -23,6 +27,8 @@ public class Rand_ScrollView : MonoBehaviour
     {
         
     }
+
+    //function for pallet statistic
     public void palletPreview()
     {
 

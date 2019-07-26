@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// script for pallet preview button that needs to show statistic of the pallet 
+/// </summary>
 public class Rand_BtnPalletPreview : MonoBehaviour
 {
     Rand_ScrollView scrollViewScript;// = GameObject.FindObjectOfType<Rand_ScrollView>();
@@ -17,6 +20,7 @@ public class Rand_BtnPalletPreview : MonoBehaviour
     {
         
     }
+    //function fthat calls sroll preview for showing statistic of the pallet
     public void btnScrollPreview()
     {
         scrollViewScript = GameObject.FindObjectOfType<Rand_ScrollView>();

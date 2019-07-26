@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+///  
+/// </summary>
 public class RenderBoxAtPosition : MonoBehaviour
 {
     private Dictionary<string, Vector3> paletPosition;

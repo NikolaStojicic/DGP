@@ -20,7 +20,7 @@ public class Collider_Controller : MonoBehaviour
 
     private Vector3[] getCornersOfBoxCollider(GameObject b)
     {
-        Vector3[] verts = new Vector3[8];
+        Vector3[] verts = new Vector3[9];
         verts[0] = b.transform.position + new Vector3(-b.transform.localScale.x, -b.transform.localScale.y, -b.transform.localScale.z) * 0.5f;
         verts[1] = b.transform.position + new Vector3(-b.transform.localScale.x, -b.transform.localScale.y, b.transform.localScale.z) * 0.5f;
         verts[2] = b.transform.position + new Vector3(-b.transform.localScale.x, b.transform.localScale.y, -b.transform.localScale.z) * 0.5f;
@@ -29,6 +29,7 @@ public class Collider_Controller : MonoBehaviour
         verts[5] = b.transform.position + new Vector3(b.transform.localScale.x, -b.transform.localScale.y, b.transform.localScale.z) * 0.5f;
         verts[6] = b.transform.position + new Vector3(b.transform.localScale.x, b.transform.localScale.y, -b.transform.localScale.z) * 0.5f;
         verts[7] = b.transform.position + new Vector3(b.transform.localScale.x, b.transform.localScale.y, b.transform.localScale.z) * 0.5f;
+        verts[8] = b.transform.position;
         return verts;
     }
 
@@ -49,8 +50,16 @@ public class Collider_Controller : MonoBehaviour
         {
             numOfVertsContained += 4;
         }
+
+        for (int i = 0; i < verts.Length; i++)
+        {
+            if (bd.Contains(verts[i]))
+            {
+                numOfVertsContained++;
+            }
+        }
         Debug.Log(numOfVertsContained);
-        if (numOfVertsContained >= 2)
+        if (numOfVertsContained >= 4)
         {
             //OVDE UPADA KOD UKOLIKO JE KUTIJA NA TACNOJ POZICIJI
             GetComponent<MeshRenderer>().material = green;
